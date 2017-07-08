@@ -1,0 +1,44 @@
+
+*bashStub* - web service which helps to stub functionality of other web services or act as a proxy in communication between them. It accepts GET, POST requests and send their data to the corresponding shell script. Later, script output will be send back as a response.
+
+What makes *bashStub* useful is that you can change the mocked behaviour easily without redeploying, recompiling anything. Just modify the script - that is all. To use *bashStub* you don't need to learn any new syntax etc. just use BASH with all commands available in your system (curl, xmlstarlet, sed, ...).
+
+lambdaprime <id.blackmesa@gmail.com>
+
+* Usage
+
+1. Make sure that /bin/bash available on your system.
+2. Deploy *bashStub* to the application server.
+3. Go to folder with deployed *bashStub* and edit get.sh, post.sh according to instructions you find there.
+
+*bashStub* available under endpoint: http://localhost:8080/bashStub
+
+* Examples
+
+- to mock web pages edit get.sh:
+
+#+BEGIN_EXAMPLE
+echo "<html>Hello world</html>"
+#+END_EXAMPLE
+
+- to mock long time response just use sleep 
+
+#+BEGIN_EXAMPLE
+sleep 30
+#+END_EXAMPLE
+
+- to forward request to another web service and return its response
+
+#+BEGIN_EXAMPLE
+curl -XPOST http://localhost:8080/web/service --data "$BODY"
+#+END_EXAMPLE
+
+- if request contains keyword XXX return nothing, otherwise forward it to another service
+
+#+BEGIN_EXAMPLE
+if [[ $BODY =~ .*XXX.* ]]; then
+    echo ""
+else
+    curl -XPOST http://localhost:8080/web/service --data "$BODY"
+fi
+#+END_EXAMPLE
