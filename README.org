@@ -1,5 +1,5 @@
 
-*bashStub* - web service which helps to stub functionality of other web services or act as a proxy in communication between them. It accepts GET, POST requests and send their data to the corresponding shell script. Later, script output will be send back as a response.
+*bashStub* - web service which helps to stub functionality of other web services or act as a proxy in communication between them. It accepts GET, POST requests and send their data including query parameters and HTTP headers to the corresponding shell script. Later, script output will be send back as a response.
 
 What makes *bashStub* useful is that you can change the mocked behaviour easily without redeploying, recompiling anything. Just modify the script - that is all. To use *bashStub* you don't need to learn any new syntax etc. just use BASH with all commands available in your system (curl, xmlstarlet, sed, ...).
 
