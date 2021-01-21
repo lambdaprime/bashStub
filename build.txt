@@ -1,0 +1,2 @@
+1. Export to WAR (in Eclipse) into release folder.
+2. zip -9jr release/bashStub.zip README.md release/bashStub.war src/get.sh src/post.sh

@@ -52,10 +52,10 @@ public class BashStubServlet extends HttpServlet {
     }
 
     void handle(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String script = request.getMethod().toLowerCase() + ".sh";
+        String script = String.format("/tmp/bashStub/%.sh", request.getMethod().toLowerCase());
         
         Process proc = Runtime.getRuntime().exec(new String[] {"/bin/bash", 
-                getServletContext().getRealPath(script), headers(request), 
+                script, headers(request), 
                 params(request.getParameterMap())});
         pipe(new InputStreamReader(request.getInputStream()), 
                 new OutputStreamWriter(proc.getOutputStream()));
